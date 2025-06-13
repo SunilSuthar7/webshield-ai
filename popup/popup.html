@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSHIELD.AI - Dark Pattern Protection</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../icon.png" alt="WebSHIELD.AI Logo" class="logo">
+            <h1>WebSHIELD.AI</h1>
+            <p class="tagline">Browse with confidence, free from manipulation</p>
+        </header>
+
+        <div class="status-container">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span id="statusText">Scanning current page...</span>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-number" id="patternsDetected">0</span>
+                <span class="stat-label">Patterns Detected</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="pagesProtected">0</span>
+                <span class="stat-label">Pages Protected</span>
+            </div>
+        </div>
+
+        <div class="detections-container" id="detectionsList">
+            <h3>Recent Detections</h3>
+            <ul id="detectionsItems">
+                <!-- Detections will be added here dynamically -->
+                <li class="empty-state">No dark patterns detected yet</li>
+            </ul>
+        </div>
+
+        <div class="actions-container">
+            <button id="toggleProtection" class="btn btn-primary">Enable Protection</button>
+            <button id="viewDetails" class="btn btn-secondary">View Details</button>
+            <button id="openSettings" class="btn btn-link">Settings</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
