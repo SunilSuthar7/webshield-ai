@@ -3,45 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSHIELD.AI - Dark Pattern Protection</title>
+    <title>WebSHIELD.AI</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="../icon.png" alt="WebSHIELD.AI Logo" class="logo">
-            <h1>WebSHIELD.AI</h1>
-            <p class="tagline">Browse with confidence, free from manipulation</p>
-        </header>
-
-        <div class="status-container">
-            <div class="status-indicator" id="statusIndicator"></div>
-            <span id="statusText">Scanning current page...</span>
-        </div>
-
-        <div class="stats-container">
-            <div class="stat-card">
-                <span class="stat-number" id="patternsDetected">0</span>
-                <span class="stat-label">Patterns Detected</span>
+    <div class="popup-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="shield-icon">🛡️</div>
+                <h1>WebSHIELD<span class="ai-text">.AI</span></h1>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" id="pagesProtected">0</span>
-                <span class="stat-label">Pages Protected</span>
+            <div class="status-indicator" id="statusIndicator">
+                <div class="status-dot active"></div>
+                <span id="statusText">Active</span>
             </div>
         </div>
 
-        <div class="detections-container" id="detectionsList">
+        <!-- Main Toggle -->
+        <div class="main-toggle">
+            <label class="toggle-switch">
+                <input type="checkbox" id="mainToggle" checked>
+                <span class="slider"></span>
+            </label>
+            <div class="toggle-info">
+                <h3>Protection Status</h3>
+                <p id="toggleDescription">Real-time dark pattern detection enabled</p>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-section">
+            <h3>Today's Protection</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="blockedCount">12</div>
+                    <div class="stat-label">Dark Patterns Blocked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="sitesScanned">47</div>
+                    <div class="stat-label">Sites Scanned</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
             <h3>Recent Detections</h3>
-            <ul id="detectionsItems">
-                <!-- Detections will be added here dynamically -->
-                <li class="empty-state">No dark patterns detected yet</li>
-            </ul>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-icon warning">⚠️</div>
+                    <div class="activity-details">
+                        <div class="activity-site">amazon.com</div>
+                        <div class="activity-type">Fake urgency timer</div>
+                    </div>
+                    <div class="activity-time">2m ago</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon blocked">🚫</div>
+                    <div class="activity-details">
+                        <div class="activity-site">newsletter-signup.com</div>
+                        <div class="activity-type">Pre-checked subscription</div>
+                    </div>
+                    <div class="activity-time">5m ago</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon warning">⚠️</div>
+                    <div class="activity-details">
+                        <div class="activity-site">shopping-site.com</div>
+                        <div class="activity-type">Hidden additional costs</div>
+                    </div>
+                    <div class="activity-time">12m ago</div>
+                </div>
+            </div>
         </div>
 
-        <div class="actions-container">
-            <button id="toggleProtection" class="btn btn-primary">Enable Protection</button>
-            <button id="viewDetails" class="btn btn-secondary">View Details</button>
-            <button id="openSettings" class="btn btn-link">Settings</button>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-secondary" id="settingsBtn">
+                <span class="btn-icon">⚙️</span>
+                Settings
+            </button>
+            <button class="btn btn-primary" id="reportBtn">
+                <span class="btn-icon">📝</span>
+                Report Issue
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Protected by WebSHIELD.AI</p>
+            <div class="footer-links">
+                <a href="#" id="helpLink">Help</a>
+                <a href="#" id="aboutLink">About</a>
+            </div>
         </div>
     </div>
 
