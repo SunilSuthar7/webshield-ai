@@ -3,172 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSHIELD.AI - Protect Yourself From Dark Patterns</title>
+    <title>WebSHIELD.AI - Protect Yourself from Dark Patterns</title>
+    <meta name="description" content="WebSHIELD.AI is a browser extension that detects and blocks manipulative dark patterns on websites, protecting your digital rights and privacy.">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <img src="assets/logo.svg" alt="WebSHIELD.AI Logo" height="40">
-                    <span>WebSHIELD.AI</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#install" class="btn btn-primary">Install Now</a></li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">🛡️</div>
+                <span class="logo-text">WebSHIELD<span class="ai-text">.AI</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#install" class="nav-link">Install</a>
+                <a class="nav-link github-link" target="_blank" href="https://github.com/SunilSuthar7/webshield-ai">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </header>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Browse the Web Without Manipulation</h1>
-                <p class="subtitle">WebSHIELD.AI detects and blocks deceptive dark patterns in real-time, giving you back control of your online experience.</p>
-                <div class="hero-buttons">
-                    <a href="#install" class="btn btn-primary">Install Extension</a>
-                    <a href="#demo" class="btn btn-secondary">See Demo</a>
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Protecting millions of users worldwide</span>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/extension-screenshot.png" alt="WebSHIELD.AI in action">
+                <h1 class="hero-title">
+                    Stop Dark Patterns.<br>
+                    Browse with <span class="gradient-text">Confidence</span>.
+                </h1>
+                <p class="hero-description">
+                    WebSHIELD.AI is an intelligent browser extension that detects and blocks manipulative UI elements in real-time, protecting you from deceptive practices and ensuring ethical web browsing.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large" id="installBtn">
+                        <span class="btn-icon">⬇️</span>
+                        Install Extension
+                        <span class="btn-badge">Free</span>
+                    </button>
+                </div>
+            </div>            <div class="hero-visual">
+                <div class="shield-visual">
+                    <div class="shield-container">
+                        <div class="shield-outer">
+                            <div class="shield-inner">
+                                <div class="shield-icon">🛡️</div>
+                                <div class="shield-rings">
+                                    <div class="ring"></div>
+                                    <div class="ring"></div>
+                                    <div class="ring"></div>
+                                </div>
+                                <div class="shield-sparkles">
+                                    <div class="sparkle"></div>
+                                    <div class="sparkle"></div>
+                                    <div class="sparkle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="features">
+    <!-- Features Section -->
+    <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">How We Protect You</h2>
+            <div class="section-header">
+                <h2 class="section-title">Powerful Protection Features</h2>
+                <p class="section-description">
+                    Advanced AI-powered detection algorithms that keep you safe from manipulative web practices
+                </p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h3>Misleading Actions</h3>
-                    <p>Flags buttons and links that trick you into unintended actions like subscriptions or purchases.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Fake Urgency</h3>
-                    <p>Identifies false countdowns and limited-time offers designed to pressure you into quick decisions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-check-square"></i>
-                    </div>
-                    <h3>Pre-selected Options</h3>
-                    <p>Alerts you about pre-checked boxes that sign you up for newsletters or additional charges.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <h3>Trick Questions</h3>
-                    <p>Highlights confusing wording designed to make you agree to things you didn't intend to.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How WebSHIELD.AI Works</h2>
-            <div class="install-steps">
-                <div class="step">
-                    <span class="step-number">1</span>
-                    <h3>Detection</h3>
-                    <p>WebSHIELD.AI scans web pages for dark patterns and manipulative UI elements in real time.</p>
-                </div>
-                <div class="step">
-                    <span class="step-number">2</span>
-                    <h3>Notification</h3>
-                    <p>It alerts you instantly when suspicious patterns are detected, keeping you informed and safe.</p>
-                </div>
-                <div class="step">
-                    <span class="step-number">3</span>
-                    <h3>Protection</h3>
-                    <p>WebSHIELD.AI blocks or highlights deceptive elements, empowering you to browse securely.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="demo" id="demo">
-        <div class="container">
-            <h2 class="section-title">See It In Action</h2>
-            <div class="demo-container">
-                <div class="before-after">
-                    <div class="before">
-                        <h4>Without WebSHIELD.AI</h4>
-                        <img src="assets/before-dp.png" alt="Website with dark patterns">
-                    </div>
-                    <div class="after">
-                        <h4>With WebSHIELD.AI</h4>
-                        <img src="assets/after-dp.png" alt="Website with dark patterns highlighted">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="install" id="install">
-        <div class="container">
-            <h2 class="section-title">Installation Guide</h2>
-            <div class="install-steps">
-                <div class="step">
-                    <span class="step-number">1</span>
-                    <h3>Download the Extension</h3>
-                    <p>Clone the repository or <a href="https://github.com/SunilSuthar7/webshield-ai" target="_blank" rel="noopener" class="github-link-inline">download it from GitHub</a>:</p>
-                    <code>git clone https://github.com/SunilSuthar7/webshield-ai.git</code>
-                </div>
-                <div class="step">
-                    <span class="step-number">2</span>
-                    <h3>Load in Chrome</h3>
-                    <p>
-                        1. Open Chrome and go to chrome://extensions/<br>
-                        2. Enable "Developer mode" in the top right<br>
-                        3. Click "Load unpacked" and select the extension folder
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Real-time Detection</h3>
+                    <p class="feature-description">
+                        Instantly identifies dark patterns as you browse, using advanced DOM analysis and machine learning algorithms.
                     </p>
+                    <div class="feature-tags">
+                        <span class="tag">AI-Powered</span>
+                        <span class="tag">Instant</span>
+                    </div>
                 </div>
-                <div class="step">
-                    <span class="step-number">3</span>
-                    <h3>Configure Settings</h3>
-                    <p>
-                        1. Click the extension icon in your browser<br>
-                        2. Customize your protection settings<br>
-                        3. Start browsing with confidence!
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Smart Blocking</h3>
+                    <p class="feature-description">
+                        Automatically neutralizes harmful elements while preserving legitimate website functionality and user experience.
                     </p>
+                    <div class="feature-tags">
+                        <span class="tag">Automatic</span>
+                        <span class="tag">Safe</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Detailed Analytics</h3>
+                    <p class="feature-description">
+                        Track your protection statistics and see exactly what threats have been blocked across all your browsing sessions.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Insights</span>
+                        <span class="tag">Reports</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">Customizable Settings</h3>
+                    <p class="feature-description">
+                        Fine-tune protection levels, whitelist trusted sites, and customize detection sensitivity to match your preferences.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Flexible</span>
+                        <span class="tag">Personal</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">
+                        All processing happens locally in your browser. No data is sent to external servers, ensuring complete privacy.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Local</span>
+                        <span class="tag">Secure</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Universal Compatibility</h3>
+                    <p class="feature-description">
+                        Works seamlessly across all websites and web applications, with support for dynamic content and modern frameworks.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Universal</span>
+                        <span class="tag">Modern</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about" id="about">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title">About WebSHIELD.AI</h2>
-            <p>
-                WebSHIELD.AI is an open-source browser extension dedicated to protecting users from deceptive dark patterns and manipulative UI tactics. Our mission is to empower users to browse the web with confidence and transparency.<br><br>
-                Our team is passionate about digital rights and user empowerment. We believe everyone deserves a safe, honest, and transparent online experience. WebSHIELD.AI leverages advanced detection algorithms to identify and block manipulative design practices, ensuring you are always in control of your choices.<br><br>
-                Whether you are shopping, signing up for services, or simply browsing, WebSHIELD.AI works silently in the background to protect you from misleading actions, fake urgency, pre-selected options, and trick questions. Join our community and help us make the web a better place for everyone!
-            </p>
+            <div class="section-header">
+                <h2 class="section-title">How WebSHIELD.AI Works</h2>
+                <p class="section-description">
+                    Our advanced AI engine analyzes web pages in real-time to protect you from manipulation
+                </p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Page Analysis</h3>
+                        <p class="step-description">
+                            WebSHIELD.AI scans the DOM structure and analyzes UI elements as pages load, identifying potential dark patterns through pattern recognition.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="analysis-animation">
+                            <div class="scan-line"></div>
+                            <div class="code-blocks">
+                                <div class="code-block"></div>
+                                <div class="code-block"></div>
+                                <div class="code-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">AI Detection</h3>
+                        <p class="step-description">
+                            Our machine learning algorithms classify suspicious elements, checking against known dark pattern databases and behavioral indicators.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="ai-brain">
+                            <div class="neural-network">
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="node"></div>
+                                <div class="connection"></div>
+                                <div class="connection"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Smart Protection</h3>
+                        <p class="step-description">
+                            Detected dark patterns are highlighted with visual warnings or automatically neutralized, while preserving legitimate website functionality.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="protection-shield">
+                            <div class="shield-icon">🛡️</div>
+                            <div class="protection-waves">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Installation Section -->
+    <section id="install" class="installation">
+        <div class="container">
+            <div class="installation-content">
+                <div class="installation-info">
+                    <h2 class="section-title">Easy Installation</h2>
+                    <p class="section-description">
+                        Get WebSHIELD.AI up and running in less than 2 minutes with our simple installation process.
+                    </p>
+                    <div class="installation-steps">
+                        <div class="install-step">
+                            <div class="install-step-number">1</div>
+                            <div class="install-step-content">
+                                <h4>Download Extension</h4>
+                                <p>Click the download button to get the WebSHIELD.AI extension files</p>
+                            </div>
+                        </div>
+                        <div class="install-step">
+                            <div class="install-step-number">2</div>
+                            <div class="install-step-content">
+                                <h4>Enable Developer Mode</h4>
+                                <p>Go to Chrome Extensions and enable "Developer mode" in the top right</p>
+                            </div>
+                        </div>
+                        <div class="install-step">
+                            <div class="install-step-number">3</div>
+                            <div class="install-step-content">
+                                <h4>Load Extension</h4>
+                                <p>Click "Load unpacked" and select the WebSHIELD.AI folder</p>
+                            </div>
+                        </div>
+                        <div class="install-step">
+                            <div class="install-step-number">4</div>
+                            <div class="install-step-content">
+                                <h4>Start Browsing Safely</h4>
+                                <p>WebSHIELD.AI is now active and protecting you from dark patterns!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="installation-buttons">
+                        <a href="https://github.com/SunilSuthar7/webshield-ai" class="btn btn-primary btn-large" id="downloadBtn" target="_blank">
+                            <span class="btn-icon">📦</span>
+                            Download Extension
+                        </a>
+                        <a href="https://github.com/SunilSuthar7/webshield-ai" class="btn btn-secondary btn-large" target="_blank">
+                            <span class="btn-icon">📖</span>
+                            View Documentation
+                        </a>
+                    </div>
+                </div>
+                <div class="installation-visual">
+                    <div class="browser-extension-demo">
+                        <div class="extension-popup">
+                            <div class="popup-header">
+                                <div class="popup-logo">🛡️ WebSHIELD.AI</div>
+                                <div class="popup-status active">Active</div>
+                            </div>
+                            <div class="popup-stats">
+                                <div class="popup-stat">
+                                    <div class="stat-number">24</div>
+                                    <div class="stat-label">Blocked Today</div>
+                                </div>
+                                <div class="popup-stat">
+                                    <div class="stat-number">156</div>
+                                    <div class="stat-label">Sites Protected</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Browse Safely?</h2>
+                <p class="cta-description">
+                    Join thousands of users who are already protected from dark patterns and manipulative web practices.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-large" id="ctaInstallBtn">
+                        <span class="btn-icon">🛡️</span>
+                        Get WebSHIELD.AI Now
+                    </button>
+                    <a href="https://github.com/SunilSuthar7/webshield-ai" class="btn btn-outline btn-large" target="_blank">
+                        <span class="btn-icon">⭐</span>
+                        Star on GitHub
+                    </a>
+                </div>
+                <div class="cta-note">
+                    <p>✅ Free forever &nbsp;&nbsp; ✅ Open source &nbsp;&nbsp; ✅ Privacy focused</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <img src="assets/logo.svg" alt="WebSHIELD.AI Logo" height="32" style="display:inline-block;vertical-align:middle;">
-            <span>© 2025 WebSHIELD.AI</span>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>WebSHIELD.AI © 2025 <span class="creator-credits">Created with ❤️ by Gautham Sutrave, Nisarga S and Sunil Suthar</span></p>
+            </div>
         </div>
     </footer>
 
