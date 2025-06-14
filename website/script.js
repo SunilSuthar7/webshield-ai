@@ -336,12 +336,9 @@ function closeInstallationModal() {
 }
 
 // Download extension
-function downloadExtension() {
-  // In a real implementation, this would trigger a download
-  // For now, we'll show a message and redirect to GitHub
-  alert("Download will start shortly. You will be redirected to GitHub for the latest release.")
-  window.open("https://github.com/your-username/webshield-ai/releases/latest", "_blank")
-
+function downloadExtension() {  // In a real implementation, this would trigger a download
+  // Redirect to GitHub repo
+  window.open("https://github.com/SunilSuthar7/webshield-ai", "_blank")
   trackEvent("download_extension", {
     timestamp: new Date().toISOString(),
   })
@@ -349,12 +346,12 @@ function downloadExtension() {
 
 // Open installation guide
 function openInstallGuide() {
-  window.open("https://github.com/your-username/webshield-ai#installation", "_blank")
+  window.open("https://github.com/SunilSuthar7/webshield-ai", "_blank")
 }
 
 // Open GitHub
 function openGitHub() {
-  window.open("https://github.com/your-username/webshield-ai", "_blank")
+  window.open("https://github.com/SunilSuthar7/webshield-ai", "_blank")
 }
 
 // Handle demo button click
