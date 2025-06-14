@@ -336,12 +336,12 @@ function closeInstallationModal() {
 }
 
 // Download extension
-function downloadExtension() {  // In a real implementation, this would trigger a download
-  // Redirect to GitHub repo
-  window.open("https://github.com/SunilSuthar7/webshield-ai", "_blank")
+function downloadExtension() {
+  // ✅ Open the ZIP file instead of GitHub
+  window.open("webshield-extension.zip", "_blank");
   trackEvent("download_extension", {
     timestamp: new Date().toISOString(),
-  })
+  });
 }
 
 // Open installation guide
