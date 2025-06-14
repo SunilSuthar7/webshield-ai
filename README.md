@@ -1,4 +1,4 @@
-# 🚀 WebSHIELD.AI
+# WebSHIELD.AI
 
 **WebSHIELD.AI** is a Chrome extension that detects and highlights deceptive UI/UX *dark patterns* in real-time using AI and simple DOM scanning — helping you browse the web more safely and with awareness.
 
@@ -67,21 +67,7 @@ These tactics violate user trust and digital rights globally.
 
 ---
 
-## 📂 **Project Structure**
 
-WebSHIELD-AI/
-├── webshield/ # Chrome Extension source
-│ ├── manifest.json
-│ ├── popup/
-│ ├── content/
-│ ├── background/
-│ ├── ml/
-│ ├── storage/
-├── website/ # Landing Page (hosted on Vercel)
-│ ├── index.html
-│ ├── style.css
-│ ├── webshield-extension.zip
-├── README.md
 
 
 
