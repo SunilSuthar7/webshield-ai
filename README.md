@@ -41,7 +41,7 @@ These tactics violate user trust and digital rights globally.
 
 ## 📦 **Download & Install the Extension**
 
-1️⃣ Click [Download Extension ZIP](https://your-vercel-url.vercel.app/webshield-extension.zip)  
+1️⃣ Click [Download Extension ZIP](https://webshield-ai.vercel.app//webshield-extension.zip)  
 2️⃣ Extract the ZIP on your computer.  
 3️⃣ Open **Google Chrome** → type `chrome://extensions/` in the address bar.  
 4️⃣ Enable **Developer Mode** (top right).  
