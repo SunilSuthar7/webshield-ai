@@ -1,263 +1,452 @@
-(function() {
-  console.log("WebShield content script loaded.");
+// Enhanced Dark Pattern Detection - Using comprehensive pattern library
+class SimpleFraudDetector {
+  constructor() {
+    // Comprehensive dark pattern detection (from your snippet)
+    this.darkPatterns = [
+      // Fake Urgency & Scarcity (high priority)
+      { pattern: /\bhurry up\b/i, message: "Creates false urgency", important: true },
+      { pattern: /\bact now\b/i, message: "Encourages immediate action", important: true },
+      { pattern: /\blimited time\b/i, message: "Limited-time offer creating scarcity", important: true },
+      { pattern: /\boffer expires\b/i, message: "Fake expiration tactic", important: true },
+      { pattern: /\blast chance\b/i, message: "Plays on fear of missing out", important: true },
+      { pattern: /\blimited offer\b/i, message: "Creates sense of exclusivity", important: true },
+      { pattern: /\bonly \d+ left\b/i, message: "Low stock warning to pressure purchase", important: true },
+      { pattern: /\brunning out\b/i, message: "Fake scarcity", important: true },
+      { pattern: /\bwhile supplies last\b/i, message: "Creates artificial scarcity", important: true },
+      { pattern: /\btime running out\b/i, message: "Pressure tactic", important: true },
 
-  // 1) Dark pattern detection function attached globally
-  function detectDarkPatterns(el) {
-    const suspiciousPatterns = [
-      { pattern: "hurry up!", message: "This may create a false urgency.", feature: "Real-time Detection", important: true },
-      { pattern: "trap", message: "This may confuse or manipulate.", feature: "Smart Blocking", important: true },
-      { pattern: "dark pattern", message: "General deceptive tactic.", feature: "Smart Blocking", important: true },
-      { pattern: "urgent!", message: "This may create urgency.", feature: "Real-time Detection", important: true },
-      { pattern: "click now!", message: "This is a pressure tactic.", feature: "Real-time Detection", important: true },
-      { pattern: "this won’t last!", message: "A false scarcity tactic.", feature: "Smart Blocking", important: false },
-      { pattern: "exclusive deal", message: "Manipulating your perception.", feature: "Smart Blocking", important: false },
-      { pattern: "can't miss", message: "Plays on FOMO.", feature: "Smart Blocking", important: false },
-      { pattern: "your account will expire", message: "Pressuring you.", feature: "Smart Blocking", important: true },
-      { pattern: "deceptive", message: "General deceptive tactic.", feature: "Smart Blocking", important: true },
-      { pattern: "misleading", message: "Intentional framing.", feature: "Smart Blocking", important: true },
-      // Cookie consent related - less important
-      { pattern: "we use cookies", message: "Possible confusing consent.", feature: "Customizable Settings", important: false },
-      { pattern: "cookie consent", message: "Confusing consent.", feature: "Customizable Settings", important: false },
-      { pattern: "this website uses cookies", message: "Possible confusing consent.", feature: "Customizable Settings", important: false },
-      { pattern: "accept cookies", message: "Manipulative consent.", feature: "Customizable Settings", important: false },
-      { pattern: "allow cookies", message: "Manipulative consent.", feature: "Customizable Settings", important: false },
-      { pattern: "cookie policy", message: "Intentional confusion.", feature: "Customizable Settings", important: false },
-      { pattern: "reject cookies", message: "Hard to find or confusing.", feature: "Customizable Settings", important: false }
-    ];
+      // Sneak into Basket
+      { pattern: /\bpre-selected\b/i, message: "Pre-checked option sneaked into basket", important: true },
+      { pattern: /\badded automatically\b/i, message: "Automatic add-on", important: true },
+      { pattern: /\bincluded by default\b/i, message: "Included without explicit consent", important: true },
 
-    if (!el || !el.textContent) return false;
+      // Confirm Shaming
+      { pattern: /\bno thanks\b/i, message: "Guilt-based negative option", important: true },
+      { pattern: /\bno, i don't want\b/i, message: "Guilt-based opt-out", important: true },
+      { pattern: /\bmiss out\b/i, message: "Fear of missing out", important: true },
+      { pattern: /\bgive up\b/i, message: "Confirm shaming tactic", important: true },
+      { pattern: /\blose my chance\b/i, message: "FOMO & shame copy", important: true },
 
-    const text = el.textContent.toLowerCase();
-    let combined = text;
+      // Forced Continuity
+      { pattern: /\bfree trial\b/i, message: "May auto-renew by default", important: true },
+      { pattern: /\btrial ends\b/i, message: "Forced subscription after trial", important: true },
+      { pattern: /\bauto.?renew\b/i, message: "Automatic renewal can be hidden", important: true },
+      { pattern: /\bcancel anytime\b/i, message: "Often harder than promised", important: true },
 
-    for (let attr of ['aria-label', 'alt', 'title']) {
-      if (el.hasAttribute(attr)) {
-        combined += " " + el.getAttribute(attr).toLowerCase();
+      // Critical fraud patterns (highest priority)
+      {
+        pattern: /\benter your bank password\b/i,
+        message: "Requesting bank credentials - CRITICAL FRAUD",
+        important: true,
+      },
+      { pattern: /\bprovide your bank login\b/i, message: "Requesting bank login - CRITICAL FRAUD", important: true },
+      { pattern: /\bconfirm your pin number\b/i, message: "Requesting PIN - CRITICAL FRAUD", important: true },
+      { pattern: /\byour computer has been infected\b/i, message: "Fake tech support scam", important: true },
+      { pattern: /\bcall microsoft support immediately\b/i, message: "Fake Microsoft support scam", important: true },
+      { pattern: /\bguaranteed returns of\b/i, message: "Investment scam promise", important: true },
+      { pattern: /\bdouble your bitcoin\b/i, message: "Cryptocurrency scam", important: true },
+      { pattern: /\birs final notice\b/i, message: "Government impersonation scam", important: true },
+
+      // Misdirection (medium priority)
+      { pattern: /\bbest value\b/i, message: "Highlights costly plan", important: false },
+      { pattern: /\brecommended\b/i, message: "Bias to upsell", important: false },
+      { pattern: /\bmost popular\b/i, message: "Biased choice presentation", important: false },
+      { pattern: /\bexclusive deal\b/i, message: "Fake exclusivity", important: false },
+
+      // Obstruction tactics
+      { pattern: /\bdelete account\b/i, message: "May be intentionally hidden", important: true },
+      { pattern: /\bcancel membership\b/i, message: "Cancel flow may be obstructed", important: true },
+      { pattern: /\bunsubscribe\b/i, message: "May be hidden in emails or settings", important: true },
+    ]
+
+    // Suspicious input fields
+    this.suspiciousInputs = [
+      "bank_password",
+      "bank_login",
+      "ssn",
+      "social_security",
+      "pin",
+      "banking",
+      "account_password",
+    ]
+
+    // Trusted domains - never flag these
+    this.trustedDomains = [
+      "google.com",
+      "amazon.com",
+      "paypal.com",
+      "microsoft.com",
+      "apple.com",
+      "facebook.com",
+      "youtube.com",
+      "netflix.com",
+      "walmart.com",
+      "target.com",
+      "ebay.com",
+      "stripe.com",
+    ]
+  }
+
+  analyzeElement(element) {
+    const text = element.textContent?.toLowerCase() || ""
+    const currentUrl = window.location.hostname.toLowerCase()
+
+    // Skip trusted domains completely
+    if (this.isTrustedDomain(currentUrl)) {
+      return null
+    }
+
+    // Check for suspicious input fields first (highest priority)
+    if (element.tagName === "INPUT") {
+      const name = element.name?.toLowerCase() || ""
+      const placeholder = element.placeholder?.toLowerCase() || ""
+
+      for (const suspicious of this.suspiciousInputs) {
+        if (name.includes(suspicious) || placeholder.includes(suspicious)) {
+          return {
+            type: "suspiciousInput",
+            confidence: 95,
+            description: `Input field requesting sensitive information: ${suspicious}`,
+            severity: "critical",
+            element: element,
+            category: "Critical Fraud",
+          }
+        }
       }
     }
 
-    for (let item of suspiciousPatterns) {
-      if (combined.includes(item.pattern.toLowerCase())) {
+    // Check for dark patterns in text
+    for (const pattern of this.darkPatterns) {
+      if (pattern.pattern.test(text)) {
+        // Prioritize important patterns
+        const confidence = pattern.important ? 85 : 65
+        const severity = pattern.message.includes("CRITICAL") ? "critical" : pattern.important ? "high" : "medium"
+
         return {
-          type: item.pattern,
-          message: item.message,
-          feature: item.feature,
-          important: item.important
-        };
+          type: "darkPattern",
+          confidence: confidence,
+          description: pattern.message,
+          severity: severity,
+          element: element,
+          category: this.getCategoryFromMessage(pattern.message),
+          pattern: pattern.pattern.source,
+        }
       }
     }
 
-    return false;
+    return null
   }
 
-  window.detectDarkPatterns = detectDarkPatterns;
-
-  // 2) Settings
-  const containerSelector = 'body'; // Change this to limit scope, e.g. '#main-content' or '.product-area'
-  const onlyShowImportant = true;   // Show popup only for important dark patterns
-  let popupShown = false;            // To show popup once
-
-  // 3) Detect dark patterns inside container
-  const container = document.querySelector(containerSelector);
-  if (!container) {
-    console.warn("Container for dark pattern detection not found:", containerSelector);
-    return;
+  getCategoryFromMessage(message) {
+    if (message.includes("CRITICAL FRAUD")) return "Critical Fraud"
+    if (message.includes("urgency") || message.includes("scarcity")) return "Fake Urgency"
+    if (message.includes("guilt") || message.includes("shame")) return "Confirm Shaming"
+    if (message.includes("auto-renew") || message.includes("trial")) return "Forced Continuity"
+    if (message.includes("upsell") || message.includes("bias")) return "Misdirection"
+    if (message.includes("hidden") || message.includes("obstruct")) return "Obstruction"
+    return "Dark Pattern"
   }
 
-  const detectedElements = [];
+  isTrustedDomain(hostname) {
+    return this.trustedDomains.some((domain) => hostname === domain || hostname.endsWith("." + domain))
+  }
+}
 
-  container.querySelectorAll('*').forEach(el => {
-    const detection = detectDarkPatterns(el);
-    if (detection) {
-      if (onlyShowImportant && !detection.important) return; // Skip less important
-      detectedElements.push({ element: el, info: detection });
+class WebShieldContent {
+  constructor() {
+    this.isEnabled = true
+    this.detectedThreats = []
+    this.maxThreats = 10 // Limit to 10 threats max for demo
+    this.scanningOverlay = null
+    this.init()
+  }
+
+  async init() {
+    const settings = await chrome.storage.sync.get(["enabled"])
+    this.isEnabled = settings.enabled !== false
+
+    if (this.isEnabled) {
+      this.showScanningOverlay()
+      setTimeout(() => {
+        this.scanPage()
+      }, 1000)
+      this.setupMessageListener()
     }
-  });
-
-  if (detectedElements.length === 0) {
-    console.log("No important dark patterns detected in container.");
-    return;
   }
 
-  // 4) Add tooltip on hover for each detected element
-  detectedElements.forEach(({ element, info }) => {
-    let tooltip;
-    element.addEventListener('mouseenter', (e) => {
-      tooltip = document.createElement('div');
-      tooltip.textContent = `${info.type}: ${info.message}`;
-      Object.assign(tooltip.style, {
-        position: 'absolute',
-        backgroundColor: '#8B4513',
-        color: '#fff',
-        padding: '6px 10px',
-        borderRadius: '6px',
-        fontSize: '13px',
-        fontWeight: '600',
-        maxWidth: '250px',
-        zIndex: 9999999,
-        pointerEvents: 'none',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-        fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-      });
-      document.body.appendChild(tooltip);
+  showScanningOverlay() {
+    // Remove existing overlay if any
+    if (this.scanningOverlay) {
+      this.scanningOverlay.remove()
+    }
 
-      function positionTooltip(event) {
-        const padding = 12;
-        let top = event.pageY + padding;
-        let left = event.pageX + padding;
+    // Create full-width scanning overlay
+    this.scanningOverlay = document.createElement("div")
+    this.scanningOverlay.id = "webshield-scanning-overlay"
+    this.scanningOverlay.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 16px 20px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        z-index: 999999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        border-bottom: 3px solid rgba(255,255,255,0.3);
+        backdrop-filter: blur(10px);
+        animation: webshield-scan-pulse 2s infinite;
+        text-align: center;
+      ">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <div style="font-size: 24px;">🛡️</div>
+          <div>
+            <div><strong>WebSHIELD.AI</strong> started debugging...</div>
+            <div style="font-size: 14px; opacity: 0.9; margin-top: 4px;">
+              🔍 Scanning for dark patterns and fraud indicators...
+            </div>
+          </div>
+          <div class="scanning-dots" style="display: flex; gap: 4px;">
+            <div style="width: 8px; height: 8px; background: white; border-radius: 50%; animation: webshield-dot-bounce 1.4s infinite ease-in-out both; animation-delay: -0.32s;"></div>
+            <div style="width: 8px; height: 8px; background: white; border-radius: 50%; animation: webshield-dot-bounce 1.4s infinite ease-in-out both; animation-delay: -0.16s;"></div>
+            <div style="width: 8px; height: 8px; background: white; border-radius: 50%; animation: webshield-dot-bounce 1.4s infinite ease-in-out both;"></div>
+          </div>
+        </div>
+      </div>
+    `
 
-        if (left + tooltip.offsetWidth > window.pageXOffset + window.innerWidth) {
-          left = event.pageX - tooltip.offsetWidth - padding;
+    // Add CSS animations
+    if (!document.getElementById("webshield-styles")) {
+      const style = document.createElement("style")
+      style.id = "webshield-styles"
+      style.textContent = `
+        @keyframes webshield-scan-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
         }
-        if (top + tooltip.offsetHeight > window.pageYOffset + window.innerHeight) {
-          top = event.pageY - tooltip.offsetHeight - padding;
+        @keyframes webshield-dot-bounce {
+          0%, 80%, 100% { transform: scale(0); }
+          40% { transform: scale(1); }
         }
+        @keyframes webshield-slide-in {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes webshield-fade-out {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(-100%); }
+        }
+      `
+      document.head.appendChild(style)
+    }
 
-        tooltip.style.top = `${top}px`;
-        tooltip.style.left = `${left}px`;
+    document.body.appendChild(this.scanningOverlay)
+  }
+
+  hideScanningOverlay() {
+    if (this.scanningOverlay) {
+      this.scanningOverlay.style.animation = "webshield-fade-out 0.5s ease-in"
+      setTimeout(() => {
+        if (this.scanningOverlay) {
+          this.scanningOverlay.remove()
+          this.scanningOverlay = null
+        }
+      }, 500)
+    }
+  }
+
+  showScanComplete(threatsFound) {
+    const completeNotification = document.createElement("div")
+    completeNotification.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${threatsFound > 0 ? "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)" : "linear-gradient(135deg, #00b894 0%, #00a085 100%)"};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        z-index: 999999;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        border: 2px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        animation: webshield-slide-in 0.5s ease-out;
+        min-width: 300px;
+      ">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="font-size: 28px;">${threatsFound > 0 ? "🚨" : "✅"}</div>
+          <div>
+            <div><strong>WebSHIELD.AI</strong> scan complete</div>
+            <div style="font-size: 14px; opacity: 0.9; margin-top: 4px;">
+              ${threatsFound > 0 ? `${threatsFound} dark pattern(s) detected - Check console (F12)` : "No dark patterns found - Website appears clean"}
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+
+    document.body.appendChild(completeNotification)
+
+    setTimeout(() => {
+      completeNotification.style.animation = "webshield-fade-out 0.5s ease-in"
+      setTimeout(() => {
+        completeNotification.remove()
+      }, 500)
+    }, 6000)
+  }
+
+  scanPage() {
+    const elements = document.querySelectorAll("*")
+    let threatsFound = 0
+    const threatsByCategory = {}
+
+    console.group("🛡️ WebSHIELD.AI - Enhanced Dark Pattern Detection")
+    console.log(`🔍 Scanning website: ${window.location.href}`)
+    console.log(`⚙️ Debug mode: Active`)
+    console.log(`🎯 Max threats to detect: ${this.maxThreats}`)
+    console.log(`📋 Pattern library: ${new SimpleFraudDetector().darkPatterns.length} patterns loaded`)
+
+    for (const element of elements) {
+      if (threatsFound >= this.maxThreats) {
+        console.log(`⏹️ Stopped scanning - reached maximum of ${this.maxThreats} threats`)
+        break
       }
 
-      positionTooltip(e);
-      element.addEventListener('mousemove', positionTooltip);
-
-      element.addEventListener('mouseleave', () => {
-        if (tooltip) {
-          tooltip.remove();
-          tooltip = null;
-        }
-      }, { once: true });
-    });
-  });
-
-  // 5) Show popup once per page load
-  if (popupShown) return;
-  popupShown = true;
-
-  // 6) Create the warning popup (fixed bottom right)
-  const popup = document.createElement('div');
-  Object.assign(popup.style, {
-    position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-    backgroundColor: '#8B4513',
-    color: 'white',
-    padding: '14px 20px',
-    borderRadius: '12px',
-    boxShadow: '0 0 15px rgb(139, 69, 19)',
-    fontWeight: 'bold',
-    fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-    cursor: 'pointer',
-    zIndex: 99999999,
-    maxWidth: '320px',
-  });
-
-  const first = detectedElements[0];
-  popup.textContent = `⚠️ Warning: Detected dark pattern "${first.info.type}". Click for details.`;
-
-  // On popup click - show details modal
-  popup.addEventListener('click', () => {
-    // Create overlay
-    const overlay = document.createElement('div');
-    Object.assign(overlay.style, {
-      position: 'fixed',
-      top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.6)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 999999999,
-    });
-
-    // Modal content box
-    const modal = document.createElement('div');
-    Object.assign(modal.style, {
-      backgroundColor: 'white',
-      borderRadius: '12px',
-      padding: '20px 30px',
-      width: '400px',
-      maxHeight: '70vh',
-      overflowY: 'auto',
-      boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-      fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-      position: 'relative',
-    });
-
-    // Title
-    const title = document.createElement('h2');
-    title.textContent = 'Detected Dark Patterns';
-    Object.assign(title.style, {
-      color: '#8B4513',
-      marginTop: '0',
-      marginBottom: '16px',
-    });
-    modal.appendChild(title);
-
-    // List all detections
-    const list = document.createElement('ul');
-    list.style.paddingLeft = '20px';
-    detectedElements.forEach(({ info }, idx) => {
-      const li = document.createElement('li');
-      li.style.marginBottom = '12px';
-      li.innerHTML = `<strong>${idx + 1}. ${info.type}</strong>: ${info.message}`;
-      list.appendChild(li);
-    });
-    modal.appendChild(list);
-
-    // Block / Allow buttons container
-    const btnContainer = document.createElement('div');
-    Object.assign(btnContainer.style, {
-      marginTop: '20px',
-      display: 'flex',
-      justifyContent: 'flex-end',
-      gap: '12px',
-    });
-
-    // Close button
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Close';
-    Object.assign(closeBtn.style, {
-      backgroundColor: '#8B4513',
-      color: 'white',
-      border: 'none',
-      padding: '8px 16px',
-      borderRadius: '6px',
-      cursor: 'pointer',
-    });
-    closeBtn.onclick = () => {
-      document.body.removeChild(overlay);
-    };
-    btnContainer.appendChild(closeBtn);
-
-    // Block first detected element button
-    const blockBtn = document.createElement('button');
-    blockBtn.textContent = 'Block This Element';
-    Object.assign(blockBtn.style, {
-      backgroundColor: '#B22222',
-      color: 'white',
-      border: 'none',
-      padding: '8px 16px',
-      borderRadius: '6px',
-      cursor: 'pointer',
-    });
-    blockBtn.onclick = () => {
       try {
-        first.element.style.pointerEvents = 'none';
-        first.element.style.opacity = '0.4';
-        alert('The element has been blocked.');
-      } catch (e) {
-        alert('Failed to block element.');
+        const threat = new SimpleFraudDetector().analyzeElement(element)
+        if (threat) {
+          this.detectedThreats.push(threat)
+          threatsFound++
+
+          // Group by category
+          if (!threatsByCategory[threat.category]) {
+            threatsByCategory[threat.category] = 0
+          }
+          threatsByCategory[threat.category]++
+
+          // Enhanced logging with categories
+          console.group(`⚠️ THREAT ${threatsFound}: ${threat.category.toUpperCase()}`)
+          console.log(`🎯 Confidence: ${threat.confidence}%`)
+          console.log(`📝 Description: ${threat.description}`)
+          console.log(`🔍 Severity: ${threat.severity}`)
+          console.log(`🔍 Element:`, element)
+
+          if (element.textContent) {
+            const preview = element.textContent.substring(0, 100)
+            console.log(`📄 Text: "${preview}${preview.length >= 100 ? "..." : ""}"`)
+          }
+
+          console.groupEnd()
+        }
+      } catch (error) {
+        // Skip problematic elements
       }
-      document.body.removeChild(overlay);
-    };
-    btnContainer.appendChild(blockBtn);
+    }
 
-    modal.appendChild(btnContainer);
+    // Enhanced summary with categories
+    console.log(`\n📊 DETECTION SUMMARY:`)
+    console.log(`🔍 Website scanned: ${window.location.hostname}`)
+    console.log(`⚠️ Total threats detected: ${threatsFound}`)
 
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-  });
+    if (Object.keys(threatsByCategory).length > 0) {
+      console.log(`📋 Threats by category:`)
+      Object.entries(threatsByCategory).forEach(([category, count]) => {
+        console.log(`   • ${category}: ${count}`)
+      })
+    }
 
-  document.body.appendChild(popup);
+    console.log(`🛡️ WebSHIELD.AI debugging completed`)
 
-  console.log(`WebShield detected ${detectedElements.length} important dark pattern(s). Popup shown once.`);
-})();
+    if (threatsFound === 0) {
+      console.log("✅ No dark patterns detected - website appears clean")
+    } else {
+      console.warn(`🚨 ${threatsFound} potential dark pattern(s) found!`)
+      console.log("📋 Check the detailed logs above for more information")
+    }
+
+    console.groupEnd()
+
+    this.hideScanningOverlay()
+    setTimeout(() => {
+      this.showScanComplete(threatsFound)
+    }, 600)
+
+    // Update badge
+    try {
+      chrome.runtime
+        .sendMessage({
+          action: "updateBadge",
+          count: threatsFound,
+        })
+        .catch(() => {})
+    } catch (e) {
+      console.warn("Chrome runtime message failed", e)
+    }
+  }
+
+  setupMessageListener() {
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      try {
+        switch (request.action) {
+          case "getDetectedPatterns":
+            sendResponse({
+              success: true,
+              count: this.detectedThreats.length,
+              patterns: this.detectedThreats,
+            })
+            break
+          case "toggleEnabled":
+            this.isEnabled = request.enabled
+            if (this.isEnabled) {
+              this.showScanningOverlay()
+              this.detectedThreats = []
+              setTimeout(() => {
+                this.scanPage()
+              }, 1000)
+            } else {
+              console.log("🛡️ WebSHIELD.AI - Detection disabled")
+              if (this.scanningOverlay) {
+                this.scanningOverlay.remove()
+                this.scanningOverlay = null
+              }
+            }
+            sendResponse({ success: true })
+            break
+          case "rescanPage":
+            console.clear()
+            this.showScanningOverlay()
+            this.detectedThreats = []
+            setTimeout(() => {
+              this.scanPage()
+            }, 1000)
+            sendResponse({ success: true })
+            break
+        }
+      } catch (error) {
+        console.error("WebSHIELD error:", error)
+        sendResponse({ success: false, error: error.message })
+      }
+      return true
+    })
+  }
+}
+
+// Initialize
+if (typeof chrome !== "undefined" && chrome.runtime) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      new WebShieldContent()
+    })
+  } else {
+    new WebShieldContent()
+  }
+} else {
+  console.warn("WebSHIELD.AI: Chrome extension APIs not available")
+}
